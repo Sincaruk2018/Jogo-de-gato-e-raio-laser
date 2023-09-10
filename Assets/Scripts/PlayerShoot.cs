@@ -9,6 +9,11 @@ public class PlayerShoot : MonoBehaviour
     private List<GameObject> priorityList;
     // private bool newTarget = false; // N sei se vai precisar mesmo
 
+    private Quaternion defaultRotation;
+
+    [Header("Stats de Jogador")]
+    private PlayerManager pm;
+
     [Header("Atirar")]
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform spawnPointProjectile;
@@ -17,6 +22,9 @@ public class PlayerShoot : MonoBehaviour
  
     void Start()
     {
+        pm = GetComponent<PlayerManager>();
+
+        defaultRotation = this.transform.rotation;
         range = GetComponent<CircleCollider2D>();
         priorityList = new List<GameObject>();
     }
@@ -38,6 +46,13 @@ public class PlayerShoot : MonoBehaviour
     private float cooldownCounter = 0f;
     void Update()
     {
+        // Kinda buggy
+        // TO FIX (?)
+        if(priorityList.Count == 0){
+            this.transform.rotation = defaultRotation;
+            return;
+        }
+
         if(priorityList.Count != 0){
             Vector3 target = priorityList[0].GetComponent<Transform>().position;
             Vector3 targetDir = new Vector3(target.x - transform.position.x, target.y - transform.position.y, 0);
@@ -49,10 +64,11 @@ public class PlayerShoot : MonoBehaviour
 
             // Atirar
             // TODO Passar dano, cooldown
+            // TODO TODO Testar métodos pra outros tiros (buckshot, spray, ...)
             if(cooldownCounter <= 0){
                 GameObject bullet = Instantiate(projectile, spawnPointProjectile.position, spawnPointProjectile.rotation);
                 bullet.GetComponent<Rigidbody2D>().AddForce(projectileSpeed * targetDir, ForceMode2D.Impulse);
-                cooldownCounter = projectileCooldown;
+                cooldownCounter = pm.getAttackSpeed();
             }
             else cooldownCounter -= Time.deltaTime;
         }

@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 4416753673859373096}
   - component: {fileID: 436421159181364684}
   - component: {fileID: 462921381469784540}
+  - component: {fileID: 2412632308955632870}
   m_Layer: 0
   m_Name: GatoProtagonista
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -150,7 +151,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.21133333}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 4
 --- !u!114 &436421159181364684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -176,8 +177,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a28c65ed25fef8c19abf2c8ed0afcfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectile: {fileID: 0}
-  spawnPointProjectile: {fileID: 0}
+  projectile: {fileID: 8598255479368982810, guid: 22c6e1e3f96f4ae9394ecba162dff31d, type: 3}
+  spawnPointProjectile: {fileID: 529222817093936691}
+  projectileSpeed: 3
+  projectileCooldown: 0.75
+--- !u!114 &2412632308955632870
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023591767145813856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1367aba2080a5b7bf8760b5bd126decf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FOR: 10
+  CON: 10
+  DES: 10
+  SOR: 10
 --- !u!1 &7032459191167371806
 GameObject:
   m_ObjectHideFlags: 0

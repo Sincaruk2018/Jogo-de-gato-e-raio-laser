@@ -128,6 +128,23 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 529222817093936691, guid: 04baeb5fb3baab8f5b24a4f3ad78757d, type: 3}
   m_PrefabInstance: {fileID: 1464167845729657346}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &325311567 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8598255479368982810, guid: 22c6e1e3f96f4ae9394ecba162dff31d, type: 3}
+  m_PrefabInstance: {fileID: 7378314238598850607}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &325311571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 325311567}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba03e9c3bc36505a6af33f12f994ab5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -230,9 +247,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1890085372}
   - component: {fileID: 1890085371}
+  - component: {fileID: 1890085374}
   - component: {fileID: 1890085373}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Enemie (Example)
   m_TagString: enemie
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -350,6 +368,54 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!50 &1890085374
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890085370}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!1 &2054558821 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2023591767145813856, guid: 04baeb5fb3baab8f5b24a4f3ad78757d, type: 3}
+  m_PrefabInstance: {fileID: 1464167845729657346}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2054558828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2054558821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1367aba2080a5b7bf8760b5bd126decf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FOR: 10
+  CON: 10
+  DES: 10
+  SOR: 10
 --- !u!1001 &1464167845729657346
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -362,6 +428,14 @@ PrefabInstance:
       propertyPath: projectile
       value: 
       objectReference: {fileID: 8598255479368982810, guid: 22c6e1e3f96f4ae9394ecba162dff31d, type: 3}
+    - target: {fileID: 462921381469784540, guid: 04baeb5fb3baab8f5b24a4f3ad78757d, type: 3}
+      propertyPath: projectileSpeed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 462921381469784540, guid: 04baeb5fb3baab8f5b24a4f3ad78757d, type: 3}
+      propertyPath: projectileCooldown
+      value: 0.75
+      objectReference: {fileID: 0}
     - target: {fileID: 462921381469784540, guid: 04baeb5fb3baab8f5b24a4f3ad78757d, type: 3}
       propertyPath: spawnPointProjectile
       value: 
@@ -410,10 +484,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 30
       objectReference: {fileID: 0}
+    - target: {fileID: 4416753673859373096, guid: 04baeb5fb3baab8f5b24a4f3ad78757d, type: 3}
+      propertyPath: m_Radius
+      value: 4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2023591767145813856, guid: 04baeb5fb3baab8f5b24a4f3ad78757d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2054558828}
   m_SourcePrefab: {fileID: 100100000, guid: 04baeb5fb3baab8f5b24a4f3ad78757d, type: 3}
 --- !u!1001 &7378314238598850607
 PrefabInstance:
@@ -474,7 +555,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8598255479368982810, guid: 22c6e1e3f96f4ae9394ecba162dff31d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 325311571}
   m_SourcePrefab: {fileID: 100100000, guid: 22c6e1e3f96f4ae9394ecba162dff31d, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
