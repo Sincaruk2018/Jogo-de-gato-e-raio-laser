@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     private void Awake()
     {
         pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
+        Debug.Log(pm);
         dano = pm.getDano();
 
         Destroy(this.gameObject, 5f);
@@ -18,12 +19,14 @@ public class Bullet : MonoBehaviour
 
     
     private void OnTriggerEnter2D(Collider2D other) {
-        if(other.gameObject.tag == "Player"){ return; }
-        
-        Destroy(this.gameObject);
         if(other.gameObject.tag == "enemie"){
             // TODO adicionar logica de dano do inimigo aqui
             // Chamar uma funcao TomarDano(dano) do inimigo
+            Destroy(this.gameObject);
+        }
+
+        if(other.gameObject.tag == "obstacle"){
+            Destroy(this.gameObject);
         }
     }
 }

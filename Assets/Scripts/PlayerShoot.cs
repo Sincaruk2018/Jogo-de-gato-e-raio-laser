@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UIElements;
 
@@ -19,10 +20,13 @@ public class PlayerShoot : MonoBehaviour
     [SerializeField] private Transform spawnPointProjectile;
     public float projectileSpeed = 2f;
     public float projectileCooldown = 1f;
+
+    private SpriteRenderer gunSprite;
  
     void Start()
     {
-        pm = GetComponent<PlayerManager>();
+        pm = GetComponentInParent<PlayerManager>();
+        gunSprite = GetComponentInChildren<SpriteRenderer>();
 
         defaultRotation = this.transform.rotation;
         range = GetComponent<CircleCollider2D>();
@@ -46,10 +50,9 @@ public class PlayerShoot : MonoBehaviour
     private float cooldownCounter = 0f;
     void Update()
     {
-        // Kinda buggy
-        // TO FIX (?)
         if(priorityList.Count == 0){
             this.transform.rotation = defaultRotation;
+            gunSprite.flipY = false;
             return;
         }
 
@@ -58,8 +61,14 @@ public class PlayerShoot : MonoBehaviour
             Vector3 targetDir = new Vector3(target.x - transform.position.x, target.y - transform.position.y, 0);
             
             // Olhar para o inimigo
-            // TODO atualizar lógica pra rotacionar apenas a arma
-            Vector3 rotationDir = Quaternion.Euler(0, 0, 120) * targetDir;
+            if(targetDir.x < 0 && !gunSprite.flipY){
+                gunSprite.flipY = true;
+            }
+            else if(targetDir.x > 0 && gunSprite.flipY){
+                gunSprite.flipY = false;
+            }
+
+            Vector3 rotationDir = Quaternion.Euler(0, 0, 90) * targetDir;
             transform.rotation = Quaternion.LookRotation(forward: Vector3.forward, rotationDir);
 
             // Atirar
