@@ -13,7 +13,6 @@ public class PlayerManager : MonoBehaviour
         SOR - Sorte - chance de crítico do jogador
     */
     [SerializeField] private float FOR = 10f, CON = 10f, DES = 10f, SOR = 10f;
-
     private float levelLimit, xp;
     public int currentLevel;
 
@@ -65,8 +64,8 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
-    public void AddXP(){
-        xp += 1;
+    public void AddXP(int amount){
+        xp += amount;
         Debug.Log(xp);
         if(xp == levelLimit){
             Debug.Log("level up!");
