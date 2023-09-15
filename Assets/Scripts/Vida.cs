@@ -4,18 +4,15 @@ using UnityEngine;
 
 public class Vida : MonoBehaviour
 {
-    [SerializeField] private int Health = 100;
-    [SerializeField] private int MaxHealth = 100;
+    [SerializeField] public int Health = 100;
+    [SerializeField] public int MaxHealth = 100;
 
 
 
     public void Damage(int value)
     {
         Health -= value;
-        if (Health <= 0)
-        {
-            Destroy(gameObject);
-        }
+       
 
     }
 
