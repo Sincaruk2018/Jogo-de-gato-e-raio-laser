@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using UnityEngine.UI;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -45,9 +47,10 @@ public class PlayerManager : MonoBehaviour
         xp = 0f;
 
         ResetWeapon();
+        updateHUD();
     }
 
-    private void updateVida(){ maxVida = getVida(); }
+    private void updateVida(){ maxVida = getVida(); updateHUD(); }
 
     public void tomarDano(float dano){
         curVida -= dano;
@@ -55,6 +58,8 @@ public class PlayerManager : MonoBehaviour
             curVida = 0;
             // TODO Game Over / Restart
         }
+
+        updateHUD();
     }
 
     public void curarVida(float cura){
@@ -62,6 +67,8 @@ public class PlayerManager : MonoBehaviour
         if(curVida > maxVida){
             curVida = maxVida;
         }
+
+        updateHUD();
     }
 
     private float levelLimit, xp;
@@ -73,6 +80,8 @@ public class PlayerManager : MonoBehaviour
             Debug.Log("level up!");
             LevelUp();
         }
+
+        updateHUD();
     }
 
     private void LevelUp(){
@@ -85,13 +94,17 @@ public class PlayerManager : MonoBehaviour
     }
 
     [SerializeField] private Gun playerGun;
+    [SerializeField] private Sprite defaultGunSprite;
 
     public void SwitchWeapon(Gun gun){
         playerGun.isDefault = false;
         playerGun = gun;
+
+        updateHUD();
     }
 
     public void ResetWeapon(){
+        playerGun.gunSprite = defaultGunSprite;
         playerGun.isDefault = true;
         
         playerGun.bulletsPerShot = 1;
@@ -99,5 +112,27 @@ public class PlayerManager : MonoBehaviour
         //playerGun.projectileCooldown = 1f;
         playerGun.projectileSpeed = 2f;
         playerGun.spread = 0f;
+
+        updateHUD();
+    }
+
+    [Header("HUD Settings")]
+    [SerializeField] private TextMeshProUGUI healthIndicator;
+    [SerializeField] private Image healthBar;
+
+    [SerializeField] private TextMeshProUGUI coinIndicator;
+
+    [SerializeField] private TextMeshProUGUI ammoIndicator;
+    [SerializeField] private Image gunIcon;
+
+    public void updateHUD(){
+        healthIndicator.text = curVida + "/" + maxVida;
+        healthBar.fillAmount = curVida / maxVida;
+
+        coinIndicator.text = xp.ToString("00000");
+
+        gunIcon.sprite = playerGun.gunSprite;
+        if(playerGun.isDefault) ammoIndicator.text = "\u221E"; // Código do símbolo infinito
+        else ammoIndicator.text = playerGun.ammo.ToString();
     }
 }

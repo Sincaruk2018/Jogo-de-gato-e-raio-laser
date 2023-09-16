@@ -6,6 +6,7 @@ TagManager:
   tags:
   - enemie
   - xp
+  - cura
   layers:
   - Default
   - TransparentFX

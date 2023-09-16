@@ -201,7 +201,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!61 &9040993905599142928
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -312,6 +312,21 @@ MonoBehaviour:
   DES: 10
   SOR: 10
   currentLevel: 0
+  playerGun:
+    isDefault: 1
+    gunSprite: {fileID: 0}
+    ammo: 0
+    projectileSpeed: 2
+    fireRate: 1
+    bulletsPerShot: 1
+    bulletsLeft: 0
+    spread: 0
+  defaultGunSprite: {fileID: 0}
+  healthIndicator: {fileID: 0}
+  healthBar: {fileID: 0}
+  coinIndicator: {fileID: 0}
+  ammoIndicator: {fileID: 0}
+  gunIcon: {fileID: 0}
 --- !u!1 &7032459191167371806
 GameObject:
   m_ObjectHideFlags: 0
@@ -389,10 +404,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a28c65ed25fef8c19abf2c8ed0afcfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gun:
+    isDefault: 1
+    gunSprite: {fileID: 21300000, guid: 31c1218a523325bbf949ee16f273a2af, type: 3}
+    ammo: 0
+    projectileSpeed: 2
+    fireRate: 1
+    bulletsPerShot: 1
+    bulletsLeft: 0
+    spread: 0
   projectile: {fileID: 8598255479368982810, guid: 22c6e1e3f96f4ae9394ecba162dff31d, type: 3}
   spawnPointProjectile: {fileID: 529222817093936691}
-  projectileSpeed: 3
-  projectileCooldown: 0.75
 --- !u!58 &7811488995252383055
 CircleCollider2D:
   m_ObjectHideFlags: 0

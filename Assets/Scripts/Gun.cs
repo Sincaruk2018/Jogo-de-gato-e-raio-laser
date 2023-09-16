@@ -8,6 +8,7 @@ public class Gun
 {
     public bool isDefault = true;
 
+    public Sprite gunSprite;
     public int ammo;
 
     public float projectileSpeed = 2f;

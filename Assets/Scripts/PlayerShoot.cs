@@ -104,6 +104,9 @@ public class PlayerShoot : MonoBehaviour
             Invoke("ShootAt", gun.fireRate);
         }
 
-        gun.ammo--;
+        if(!gun.isDefault)
+            gun.ammo--;
+
+        pm.updateHUD();
     }
 }

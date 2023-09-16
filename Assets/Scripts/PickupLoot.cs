@@ -29,6 +29,7 @@ public class PickupLoot : MonoBehaviour
             else if(this.gameObject.tag == "arma"){
                 pm.SwitchWeapon(gun);
             }
+            pm.updateHUD();
             Destroy(this.gameObject);
         }
     }
