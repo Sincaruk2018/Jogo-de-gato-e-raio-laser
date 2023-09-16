@@ -10,18 +10,20 @@ public class PlayerShoot : MonoBehaviour
     private List<GameObject> priorityList;
     // private bool newTarget = false; // N sei se vai precisar mesmo
 
+    private Vector3 targetDir;
     private Quaternion defaultRotation;
+    private SpriteRenderer gunSprite;
 
     [Header("Stats de Jogador")]
     private PlayerManager pm;
 
+    [Header("Stats da arma")]
+    [SerializeField] private Gun gun;
+
     [Header("Atirar")]
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform spawnPointProjectile;
-    public float projectileSpeed = 2f;
-    public float projectileCooldown = 1f;
 
-    private SpriteRenderer gunSprite;
  
     void Start()
     {
@@ -58,7 +60,7 @@ public class PlayerShoot : MonoBehaviour
 
         if(priorityList.Count != 0){
             Vector3 target = priorityList[0].GetComponent<Transform>().position;
-            Vector3 targetDir = new Vector3(target.x - transform.position.x, target.y - transform.position.y, 0);
+            targetDir = new Vector3(target.x - transform.position.x, target.y - transform.position.y, 0);
             
             // Olhar para o inimigo
             if(targetDir.x < 0 && !gunSprite.flipY){
@@ -75,11 +77,36 @@ public class PlayerShoot : MonoBehaviour
             // TODO Passar dano, cooldown
             // TODO TODO Testar métodos pra outros tiros (buckshot, spray, ...)
             if(cooldownCounter <= 0){
-                GameObject bullet = Instantiate(projectile, spawnPointProjectile.position, spawnPointProjectile.rotation);
-                bullet.GetComponent<Rigidbody2D>().AddForce(projectileSpeed * targetDir, ForceMode2D.Impulse);
+                gun.bulletsLeft = gun.bulletsPerShot;
+                if(gun.isDefault || (!gun.isDefault && gun.ammo > 0)){
+                    ShootAt();
+                }
                 cooldownCounter = pm.getAttackSpeed();
+                
+                if(!gun.isDefault && gun.ammo <= 0){
+                    pm.ResetWeapon();
+                }
             }
             else cooldownCounter -= Time.deltaTime;
         }
+    }
+
+    private void ShootAt(){
+        float x = Random.Range(-gun.spread, gun.spread);
+        float y = Random.Range(-gun.spread, gun.spread);
+        Vector3 spreading = targetDir + new Vector3(x, y, 0);
+
+        GameObject bullet = Instantiate(projectile, spawnPointProjectile.position, spawnPointProjectile.rotation);
+        bullet.GetComponent<Rigidbody2D>().AddForce(gun.projectileSpeed * spreading, ForceMode2D.Impulse);
+        
+        gun.bulletsLeft--;
+        if(gun.bulletsLeft > 0 && gun.ammo > 0){
+            Invoke("ShootAt", gun.fireRate);
+        }
+
+        if(!gun.isDefault)
+            gun.ammo--;
+
+        pm.updateHUD();
     }
 }
