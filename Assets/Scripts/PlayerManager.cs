@@ -13,8 +13,6 @@ public class PlayerManager : MonoBehaviour
         SOR - Sorte - chance de crítico do jogador
     */
     [SerializeField] private float FOR = 10f, CON = 10f, DES = 10f, SOR = 10f;
-    private float levelLimit, xp;
-    public int currentLevel;
 
     // Não sei se precisa disso kek
     public float getFOR(){ return this.FOR; }
@@ -45,6 +43,8 @@ public class PlayerManager : MonoBehaviour
         currentLevel = 1;
         levelLimit = 10f;
         xp = 0f;
+
+        ResetWeapon();
     }
 
     private void updateVida(){ maxVida = getVida(); }
@@ -64,6 +64,8 @@ public class PlayerManager : MonoBehaviour
         }
     }
 
+    private float levelLimit, xp;
+    public int currentLevel;
     public void AddXP(int amount){
         xp += amount;
         Debug.Log(xp);
@@ -80,5 +82,22 @@ public class PlayerManager : MonoBehaviour
         // TODO ajustar crescimento do xp pro próximo nível
         levelLimit = 10 + (int) Math.Pow(2, currentLevel);
         Debug.Log("Novo level cap:" + levelLimit);
+    }
+
+    [SerializeField] private Gun playerGun;
+
+    public void SwitchWeapon(Gun gun){
+        playerGun.isDefault = false;
+        playerGun = gun;
+    }
+
+    public void ResetWeapon(){
+        playerGun.isDefault = true;
+        
+        playerGun.bulletsPerShot = 1;
+        playerGun.fireRate = 1f;
+        //playerGun.projectileCooldown = 1f;
+        playerGun.projectileSpeed = 2f;
+        playerGun.spread = 0f;
     }
 }

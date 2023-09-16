@@ -10,18 +10,20 @@ public class PlayerShoot : MonoBehaviour
     private List<GameObject> priorityList;
     // private bool newTarget = false; // N sei se vai precisar mesmo
 
+    private Vector3 targetDir;
     private Quaternion defaultRotation;
+    private SpriteRenderer gunSprite;
 
     [Header("Stats de Jogador")]
     private PlayerManager pm;
 
+    [Header("Stats da arma")]
+    [SerializeField] private Gun gun;
+
     [Header("Atirar")]
     [SerializeField] private GameObject projectile;
     [SerializeField] private Transform spawnPointProjectile;
-    private Vector3 targetDir;
-    [SerializeField] private Gun gun;
 
-    private SpriteRenderer gunSprite;
  
     void Start()
     {
@@ -76,8 +78,14 @@ public class PlayerShoot : MonoBehaviour
             // TODO TODO Testar métodos pra outros tiros (buckshot, spray, ...)
             if(cooldownCounter <= 0){
                 gun.bulletsLeft = gun.bulletsPerShot;
-                ShootAt();
+                if(gun.isDefault || (!gun.isDefault && gun.ammo > 0)){
+                    ShootAt();
+                }
                 cooldownCounter = pm.getAttackSpeed();
+                
+                if(!gun.isDefault && gun.ammo <= 0){
+                    pm.ResetWeapon();
+                }
             }
             else cooldownCounter -= Time.deltaTime;
         }
@@ -90,9 +98,12 @@ public class PlayerShoot : MonoBehaviour
 
         GameObject bullet = Instantiate(projectile, spawnPointProjectile.position, spawnPointProjectile.rotation);
         bullet.GetComponent<Rigidbody2D>().AddForce(gun.projectileSpeed * spreading, ForceMode2D.Impulse);
+        
         gun.bulletsLeft--;
-        if(gun.bulletsLeft > 0){
+        if(gun.bulletsLeft > 0 && gun.ammo > 0){
             Invoke("ShootAt", gun.fireRate);
         }
+
+        gun.ammo--;
     }
 }

@@ -12,7 +12,13 @@ public class Bullet : MonoBehaviour
     {
         pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
         Debug.Log(pm);
+        
         dano = pm.getDano();
+        float dice = Random.Range(0, 100);
+        if(dice / 100f <= pm.getCriticalPercentage()){
+            Debug.Log("Critico!");
+            dano *= 2;
+        }
 
         Destroy(this.gameObject, 5f);
     }

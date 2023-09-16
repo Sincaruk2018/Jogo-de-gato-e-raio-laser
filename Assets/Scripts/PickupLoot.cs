@@ -11,6 +11,7 @@ public class PickupLoot : MonoBehaviour
 
     [Header("Modifier")]
     public float value = 1f;
+    public Gun gun;
 
     private void Start() {
         pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
@@ -26,7 +27,7 @@ public class PickupLoot : MonoBehaviour
                 pm.curarVida(value);
             }
             else if(this.gameObject.tag == "arma"){
-                //pm.AddXP();
+                pm.SwitchWeapon(gun);
             }
             Destroy(this.gameObject);
         }
