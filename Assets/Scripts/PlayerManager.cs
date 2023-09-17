@@ -31,7 +31,7 @@ public class PlayerManager : MonoBehaviour
 
     // TODO refinar as equações dos stats
     // Talvez salvar esses valores em variável (ou lambda?)
-    public float getDano(){ return this.FOR / 10f; }
+    public float getDano(){ return this.FOR / 5f; }
     public float getVida(){ return this.CON * 5f; }
     public float getAttackSpeed(){ return 10f / this.DES; }
     public float getCriticalPercentage(){ return this.SOR / 100f; }
@@ -136,7 +136,7 @@ public class PlayerManager : MonoBehaviour
         healthIndicator.text = curVida + " / " + maxVida;
         healthBar.fillAmount = curVida / maxVida;
 
-        coinIndicator.text = xp.ToString("00000");
+        coinIndicator.text = xp.ToString("00000000");
 
         //gunIcon.sprite = playerGun.gunSprite;
         //if(playerGun.isDefault) ammoIndicator.text = "\u221E"; // Código do símbolo infinito

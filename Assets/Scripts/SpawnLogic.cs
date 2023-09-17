@@ -29,15 +29,12 @@ public class SpawnLogic : MonoBehaviour
         else
         {
             setTarget();
-            while (Vector3.Distance(Target, Player.transform.position) < 3)
-            {
-                setTarget();
-            }
+            TimerMax = Random.Range(4f, 8f);
 
             EnemyRoulette = Random.Range(0, 100);
             if(EnemyRoulette <=10f)
             {
-                Instantiate(Ratao,Target, transform.rotation);
+                Instantiate(Ratao, Target, transform.rotation);
                 Timer = TimerMax;
             }
 
@@ -52,13 +49,14 @@ public class SpawnLogic : MonoBehaviour
                 Instantiate(Ratinho, Target, transform.rotation);
                 Timer = TimerMax;
             }
-            
-
         }
     }
 
     void setTarget()
     {
         Target.Set(Random.Range(-8f, 8f), Random.Range(-4.5f, 4.5f),0f);
+        if(Vector3.Distance(Target, Player.transform.position) < 3){
+            setTarget();
+        }
     }
 }
