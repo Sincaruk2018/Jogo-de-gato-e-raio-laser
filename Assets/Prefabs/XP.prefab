@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1437123176009918548}
   - component: {fileID: 5521168193910727251}
   - component: {fileID: 5884967355143657224}
-  - component: {fileID: 1997598302543131980}
+  - component: {fileID: 1733431478451262947}
   m_Layer: 0
   m_Name: XP
   m_TagString: xp
@@ -159,7 +159,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 0.5785157}
   m_EdgeRadius: 0
---- !u!114 &1997598302543131980
+--- !u!114 &1733431478451262947
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -168,7 +168,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2844354306210815726}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c3ce41182084b021b44e5f8171e9abc, type: 3}
+  m_Script: {fileID: 11500000, guid: a8e5a572e0880729493a6ce48d3d8c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   attractionForce: 2
+  value: 1
+  gun:
+    isDefault: 1
+    ammo: 0
+    projectileSpeed: 2
+    fireRate: 1
+    bulletsPerShot: 1
+    bulletsLeft: 0
+    spread: 0
