@@ -18,8 +18,6 @@ public class UpgradeMenuManager : MonoBehaviour
 	GameObject placeholder;
 	
 	
-	
-	
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +32,6 @@ public class UpgradeMenuManager : MonoBehaviour
 		
 		placeholder = GameObject.Find("Info 2");
 		statsText[1] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
-		
 		
 		placeholder = GameObject.Find("Info 3");
 		statsText[2] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
@@ -56,26 +53,17 @@ public class UpgradeMenuManager : MonoBehaviour
 		priceText[3] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
 
 
-
-
 		statsText[0].text = "Power: " + PlayerStatsManager.Instance.playerFOR.ToString();
 		statsText[1].text = "Defense: " + PlayerStatsManager.Instance.playerCON.ToString();
 		statsText[2].text = "Agility: " + PlayerStatsManager.Instance.playerAGI.ToString();
 		statsText[3].text = "Luck: " + PlayerStatsManager.Instance.playerLCK.ToString();
+
         priceText[0].text = price[0].ToString();
 		priceText[1].text = price[1].ToString();
 		priceText[2].text = price[2].ToString();
 		priceText[3].text = price[3].ToString();
 
 		coinText.text = PlayerStatsManager.Instance.playerMON.ToString();
-
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     public void StartGame()
