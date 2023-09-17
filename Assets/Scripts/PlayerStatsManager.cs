@@ -16,24 +16,11 @@ public class PlayerStatsManager : MonoBehaviour
     {
 		if (Instance != null)
 		{
-			Destroy(gameObject);
+			Destroy(this.gameObject);
 			return;
 		}
 		
         Instance = this;
-        DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(this.gameObject);
     }
-	
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    
 }
