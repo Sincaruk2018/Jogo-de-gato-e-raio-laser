@@ -10,7 +10,7 @@ public class PickupLoot : MonoBehaviour
     public float attractionForce = 2f;
 
     [Header("Modifier")]
-    public float value = 1f;
+    public float value = 2f;
     public Gun gun;
 
     private void Start() {

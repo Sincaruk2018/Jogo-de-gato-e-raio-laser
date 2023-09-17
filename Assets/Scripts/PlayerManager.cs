@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     */
     private float FOR = 10f, CON = 10f, DES = 10f, SOR = 10f;
     private GameObject[] enemies;
+    private AudioSource Audio;
 
     // Não sei se precisa disso kek
     public float getFOR(){ return this.FOR; }
@@ -42,9 +43,8 @@ public class PlayerManager : MonoBehaviour
     private void Start() {
         maxVida = getVida();
         curVida = maxVida;
+        Audio = GetComponent<AudioSource>();
 
-        currentLevel = 1;
-        levelLimit = 10f;
         xp = 0f;
 
         ResetWeapon();
@@ -55,6 +55,7 @@ public class PlayerManager : MonoBehaviour
 
     public void tomarDano(float dano){
         curVida -= dano;
+        Audio.Play();
         if(curVida <= 0){
             curVida = 0;
             GameObject.Find("Canvas").transform.GetChild(4).gameObject.SetActive(true);
@@ -79,26 +80,13 @@ public class PlayerManager : MonoBehaviour
         updateHUD();
     }
 
-    private float levelLimit, xp;
-    public int currentLevel;
+    private float xp;
     public void AddXP(int amount){
         xp += amount;
         Debug.Log(xp);
-        if(xp == levelLimit){
-            Debug.Log("level up!");
-            LevelUp();
-        }
+        
 
         updateHUD();
-    }
-
-    private void LevelUp(){
-        currentLevel++;
-        xp = 0;
-
-        // TODO ajustar crescimento do xp pro próximo nível
-        levelLimit = 10 + (int) Math.Pow(2, currentLevel);
-        Debug.Log("Novo level cap:" + levelLimit);
     }
 
     [SerializeField] private Gun playerGun;

@@ -32,19 +32,19 @@ public class SpawnLogic : MonoBehaviour
             TimerMax = Random.Range(4f, 8f);
 
             EnemyRoulette = Random.Range(0, 100);
-            if(EnemyRoulette <=10f)
+            if(EnemyRoulette <=20f)
             {
                 Instantiate(Ratao, Target, transform.rotation);
                 Timer = TimerMax;
             }
 
-            else if (EnemyRoulette > 10f && EnemyRoulette <=20f)
+            else if (EnemyRoulette > 20f && EnemyRoulette <=30f)
             {
                 Instantiate(Atirador, Target, transform.rotation);
                 Timer = TimerMax;
             }
 
-            else if(EnemyRoulette > 20f)
+            else if(EnemyRoulette > 30f)
             {
                 Instantiate(Ratinho, Target, transform.rotation);
                 Timer = TimerMax;
