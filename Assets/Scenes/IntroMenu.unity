@@ -533,7 +533,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &747986944
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 769248735}
   - component: {fileID: 769248734}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1091,7 +1091,7 @@ GameObject:
   - component: {fileID: 840042801}
   - component: {fileID: 840042800}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1224,7 +1224,7 @@ GameObject:
   - component: {fileID: 1327203848}
   - component: {fileID: 1327203847}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: Instructions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
