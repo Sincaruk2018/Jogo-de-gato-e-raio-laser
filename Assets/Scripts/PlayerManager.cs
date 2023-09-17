@@ -15,6 +15,7 @@ public class PlayerManager : MonoBehaviour
         SOR - Sorte - chance de crítico do jogador
     */
     [SerializeField] private float FOR = 10f, CON = 10f, DES = 10f, SOR = 10f;
+    private GameObject[] enemies;
 
     // Não sei se precisa disso kek
     public float getFOR(){ return this.FOR; }
@@ -56,7 +57,15 @@ public class PlayerManager : MonoBehaviour
         curVida -= dano;
         if(curVida <= 0){
             curVida = 0;
-            // TODO Game Over / Restart
+            GameObject.Find("PanelGameOver").SetActive(true);
+            GameObject.Find("Spawner").SetActive(false);
+            enemies = GameObject.FindGameObjectsWithTag("enemie");
+            for(int i = 0; i < enemies.length; i++)
+            {
+                Destroy(enemies[i]);
+            }
+            gameObject.SetActive(false);
+            
         }
 
         updateHUD();
@@ -117,22 +126,22 @@ public class PlayerManager : MonoBehaviour
     }
 
     [Header("HUD Settings")]
-    [SerializeField] private TextMeshProUGUI healthIndicator;
+    //[SerializeField] private TextMeshProUGUI healthIndicator;
     [SerializeField] private Image healthBar;
 
     [SerializeField] private TextMeshProUGUI coinIndicator;
 
-    [SerializeField] private TextMeshProUGUI ammoIndicator;
-    [SerializeField] private Image gunIcon;
+    //[SerializeField] private TextMeshProUGUI ammoIndicator;
+    //[SerializeField] private Image gunIcon;
 
     public void updateHUD(){
-        healthIndicator.text = curVida + "/" + maxVida;
+        //healthIndicator.text = curVida + "/" + maxVida;
         healthBar.fillAmount = curVida / maxVida;
 
         coinIndicator.text = xp.ToString("00000");
 
-        gunIcon.sprite = playerGun.gunSprite;
-        if(playerGun.isDefault) ammoIndicator.text = "\u221E"; // Código do símbolo infinito
-        else ammoIndicator.text = playerGun.ammo.ToString();
+        //gunIcon.sprite = playerGun.gunSprite;
+        //if(playerGun.isDefault) ammoIndicator.text = "\u221E"; // Código do símbolo infinito
+        //else ammoIndicator.text = playerGun.ammo.ToString();
     }
 }
