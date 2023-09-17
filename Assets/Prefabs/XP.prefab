@@ -171,10 +171,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8e5a572e0880729493a6ce48d3d8c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attractionForce: 2
+  attractionForce: 5
   value: 1
   gun:
     isDefault: 1
+    gunSprite: {fileID: 0}
     ammo: 0
     projectileSpeed: 2
     fireRate: 1

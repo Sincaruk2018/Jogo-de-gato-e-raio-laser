@@ -1129,10 +1129,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 029f766396e7411499057a7c415e8617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerFOR: 5
-  playerCON: 5
-  playerAGI: 5
-  playerLCK: 5
+  playerFOR: 3
+  playerCON: 3
+  playerAGI: 3
+  playerLCK: 3
   playerMON: 5
 --- !u!1 &547941683
 GameObject:
@@ -1874,7 +1874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b083b0281617e2fbfbf512bd3c81f192, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  valuePerLevel: 5
+  valuePerLevel: 2
   priceText:
   - {fileID: 1371891795}
   - {fileID: 1691998008}

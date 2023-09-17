@@ -9,7 +9,7 @@ public class UpgradeMenuManager : MonoBehaviour
 	private int[] price = {1,1,1,1};
 	float goldenRatio;
 	float aux_power;
-	float FORQNT, DEFQNT, AGIQNT, LCKQNT;
+	int FORQNT, DEFQNT, AGIQNT, LCKQNT;
 	
 	/* Declarando componentes da UI */
 	[SerializeField ]public TMPro.TextMeshProUGUI[] priceText = new TMPro.TextMeshProUGUI[4];
@@ -30,15 +30,15 @@ public class UpgradeMenuManager : MonoBehaviour
 			valuePerLevel = 1;
 		}
 
-		FORQNT = (PlayerStatsManager.Instance.playerFOR / valuePerLevel);
-		DEFQNT = (PlayerStatsManager.Instance.playerCON / valuePerLevel);
-		AGIQNT = (PlayerStatsManager.Instance.playerAGI / valuePerLevel);
-		LCKQNT = (PlayerStatsManager.Instance.playerLCK / valuePerLevel);
+		FORQNT = (int)Mathf.Floor((PlayerStatsManager.Instance.playerFOR / valuePerLevel));
+		DEFQNT = (int)Mathf.Floor((PlayerStatsManager.Instance.playerCON / valuePerLevel));
+		AGIQNT = (int)Mathf.Floor((PlayerStatsManager.Instance.playerAGI / valuePerLevel));
+		LCKQNT = (int)Mathf.Floor((PlayerStatsManager.Instance.playerLCK / valuePerLevel));
         if (FORQNT > 1)
         {
 			for (int i = 1; i <= FORQNT; i++)
 			{
-				price[0] += ((int)Mathf.Pow(goldenRatio, i));
+				price[0] += (int)Mathf.Floor(Mathf.Pow(goldenRatio, i));
 			}
 			price[0]--;
 		}
@@ -46,7 +46,7 @@ public class UpgradeMenuManager : MonoBehaviour
         {
 			for (int i = 1; i <= DEFQNT; i++)
 			{
-				price[1] += ((int)Mathf.Pow(goldenRatio, i));
+				price[1] += (int)Mathf.Floor(Mathf.Pow(goldenRatio, i));
 			}
 			price[1]--;
 		}
@@ -54,7 +54,7 @@ public class UpgradeMenuManager : MonoBehaviour
         {
 			for (int i = 1; i <= AGIQNT; i++)
 			{
-				price[2] += ((int)Mathf.Pow(goldenRatio, i));
+				price[2] += (int)Mathf.Floor(Mathf.Pow(goldenRatio, i));
 			}
 			price[2]--;
 		}
@@ -62,7 +62,7 @@ public class UpgradeMenuManager : MonoBehaviour
         {
 			for (int i = 1; i <= LCKQNT; i++)
 			{
-				price[3] += ((int)Mathf.Pow(goldenRatio, i));
+				price[3] += (int)Mathf.Floor(Mathf.Pow(goldenRatio, i));
 			}
 			price[3]--;
 		}
@@ -147,26 +147,26 @@ public class UpgradeMenuManager : MonoBehaviour
 			case 0:
 				PlayerStatsManager.Instance.playerFOR += valuePerLevel;
 				statsText[id].text = "Power: " + PlayerStatsManager.Instance.playerFOR;
-				aux_power = PlayerStatsManager.Instance.playerFOR/valuePerLevel;
+				aux_power = (int)PlayerStatsManager.Instance.playerFOR/valuePerLevel;
 			break;
 			case 1:
 				PlayerStatsManager.Instance.playerCON += valuePerLevel;
 				statsText[id].text = "Defense: " + PlayerStatsManager.Instance.playerCON;
-				aux_power = PlayerStatsManager.Instance.playerCON/valuePerLevel;
+				aux_power = (int)PlayerStatsManager.Instance.playerCON/valuePerLevel;
 			break;
 			case 2:
 				PlayerStatsManager.Instance.playerAGI += valuePerLevel;
 				statsText[id].text = "Agility: " + PlayerStatsManager.Instance.playerAGI;
-				aux_power = PlayerStatsManager.Instance.playerAGI/valuePerLevel;
+				aux_power = (int)PlayerStatsManager.Instance.playerAGI/valuePerLevel;
 			break;
 			case 3:
 				PlayerStatsManager.Instance.playerLCK += valuePerLevel;
 				statsText[id].text = "Luck: " + PlayerStatsManager.Instance.playerLCK;
-				aux_power = PlayerStatsManager.Instance.playerLCK/valuePerLevel;
+				aux_power = (int)PlayerStatsManager.Instance.playerLCK/valuePerLevel;
 			break;
 		}
 		
-		aux_power = Mathf.Pow(goldenRatio,aux_power);
+		aux_power = Mathf.Floor(Mathf.Pow(goldenRatio,aux_power));
 		price[id] += (int)aux_power;
 		
 		/* Atualização dos Textos*/

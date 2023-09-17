@@ -18,7 +18,7 @@ public class PickupHealth : MonoBehaviour
     {
         if (other.gameObject.tag == "Player" && !other.isTrigger)
         {
-            pm.curarVida(pm.getVida()/2);
+            pm.curarVida(pm.getVida()/4);
             Destroy(this.gameObject);
         }
     }

@@ -11,11 +11,14 @@ public class SpawnLogic : MonoBehaviour
     private float EnemyRoulette;
     private int counter = 0;
     private int difficulty = 0;
+    private GameObject[] enemies;
+    private int cur, past;
     [SerializeField] private GameObject Ratinho;
     [SerializeField] private GameObject Ratao;
     [SerializeField] private GameObject Atirador;
     void Start()
     {
+        past = 0;
         TimerMax = 5f;
         Timer = 0;
         Player = GameObject.Find("GatoProtagonista");
@@ -23,7 +26,16 @@ public class SpawnLogic : MonoBehaviour
 
 
     void Update()
-    {
+    {   
+        
+        enemies = GameObject.FindGameObjectsWithTag("enemie");
+        cur = enemies.Length;
+        if(cur<10 && cur < past)
+        {
+            Timer= 0;
+        }
+        past = cur;
+
         if (counter > 50 && counter<120)
         {
             difficulty = 1;
