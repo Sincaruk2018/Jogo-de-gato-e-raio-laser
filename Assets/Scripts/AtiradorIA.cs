@@ -17,7 +17,7 @@ public class AtiradorIA : MonoBehaviour
 
     void Start()
     {
-        projectileSpeed = 2f;
+        projectileSpeed = 3f;
         Player = GameObject.Find("GatoProtagonista");
         luck = Player.GetComponent<PlayerManager>().getSOR();
         sprite = this.GetComponent<SpriteRenderer>();

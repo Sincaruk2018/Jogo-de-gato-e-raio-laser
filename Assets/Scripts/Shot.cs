@@ -11,7 +11,7 @@ public class Shot : MonoBehaviour
     private void Awake()
     {
         Player = GameObject.Find("GatoProtagonista");
-        Destroy(this.gameObject, 10f);
+        Destroy(gameObject, 10f);
     }
 
 

@@ -9,6 +9,8 @@ public class SpawnLogic : MonoBehaviour
     private float Timer;
     private float TimerMax;
     private float EnemyRoulette;
+    private int counter = 0;
+    private int difficulty = 0;
     [SerializeField] private GameObject Ratinho;
     [SerializeField] private GameObject Ratao;
     [SerializeField] private GameObject Atirador;
@@ -22,14 +24,29 @@ public class SpawnLogic : MonoBehaviour
 
     void Update()
     {
-        if(Timer > 0)
+        if (counter > 50 && counter<120)
+        {
+            difficulty = 1;
+        }
+        else if (counter >= 120 && counter <240)
+        {
+            difficulty = 2;
+        }
+        else if (counter>=240)
+        {
+            difficulty = 3;
+        }
+
+
+
+        if (Timer > 0)
         {
             Timer -= Time.deltaTime;
         }
         else
         {
             setTarget();
-            TimerMax = Random.Range(3f, 5f);
+            TimerMax = Random.Range(3f-difficulty, 5f-difficulty);
 
             EnemyRoulette = Random.Range(0, 100);
             if(EnemyRoulette <=20f)
@@ -49,6 +66,7 @@ public class SpawnLogic : MonoBehaviour
                 Instantiate(Ratinho, Target, transform.rotation);
                 Timer = TimerMax;
             }
+            counter++;
         }
     }
 
