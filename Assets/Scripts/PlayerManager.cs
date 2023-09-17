@@ -14,7 +14,10 @@ public class PlayerManager : MonoBehaviour
         DES - Destreza - velocidade de ataque do jogador
         SOR - Sorte - chance de crítico do jogador
     */
-    [SerializeField] private float FOR = 10f, CON = 10f, DES = 10f, SOR = 10f;
+    private float FOR = PlayerStatsManager.Instance.playerFOR, 
+    CON = PlayerStatsManager.Instance.playerCON, 
+    DES = PlayerStatsManager.Instance.playerAGI, 
+    SOR = PlayerStatsManager.Instance.playerLCK;
 
     // Não sei se precisa disso kek
     public float getFOR(){ return this.FOR; }
@@ -22,7 +25,7 @@ public class PlayerManager : MonoBehaviour
     public float getDES(){ return this.DES; }
     public float getSOR(){ return this.SOR; }
 
-
+    
     public void upgradeFOR(float amount){ this.FOR += amount; }
     public void upgradeCON(float amount){ this.CON += amount; }
     public void upgradeDES(float amount){ this.DES += amount; }
