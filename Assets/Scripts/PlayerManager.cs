@@ -14,7 +14,10 @@ public class PlayerManager : MonoBehaviour
         DES - Destreza - velocidade de ataque do jogador
         SOR - Sorte - chance de crítico do jogador
     */
-    private float FOR = 10f, CON = 10f, DES = 10f, SOR = 10f;
+    private float FOR = PlayerStatsManager.Instance.playerFOR, 
+    CON = PlayerStatsManager.Instance.playerCON, 
+    DES = PlayerStatsManager.Instance.playerAGI, 
+    SOR = PlayerStatsManager.Instance.playerLCK;
     private GameObject[] enemies;
     private AudioSource Audio;
 
