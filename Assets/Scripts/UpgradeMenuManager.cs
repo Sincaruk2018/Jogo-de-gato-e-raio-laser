@@ -12,7 +12,7 @@ public class UpgradeMenuManager : MonoBehaviour
 	
 	/* Declarando componentes da UI */
 	[SerializeField ]public TMPro.TextMeshProUGUI[] priceText = new TMPro.TextMeshProUGUI[4];
-	[SerializeField ]public TMPro.TextMeshProUGUI[] statsPrice = new TMPro.TextMeshProUGUI[4];
+	[SerializeField ]public TMPro.TextMeshProUGUI[] statsText = new TMPro.TextMeshProUGUI[4];
 	[SerializeField] public TMPro.TextMeshProUGUI coinText;
 	
 	GameObject placeholder;
@@ -30,39 +30,43 @@ public class UpgradeMenuManager : MonoBehaviour
 		}
 		
 		placeholder = GameObject.Find("Info 1");
-		priceText[0] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
+		statsText[0] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
 		
 		placeholder = GameObject.Find("Info 2");
-		priceText[1] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
+		statsText[1] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
 		
 		
 		placeholder = GameObject.Find("Info 3");
-		priceText[2] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
+		statsText[2] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
 		
 		placeholder = GameObject.Find("Info 4");
-		priceText[3] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
+		statsText[3] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
 		
 		
 		placeholder = GameObject.Find("Text power");
-		statsPrice[0] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
+		priceText[0] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
 		
 		placeholder = GameObject.Find("Text defense");
-		statsPrice[1] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
+		priceText[1] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
 		
 		placeholder = GameObject.Find("Text constitution");
-		statsPrice[2] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
+		priceText[2] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
 		
 		placeholder = GameObject.Find("Text luck");
-		statsPrice[3] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
-		
-		
-		
-		
-		priceText[0].text = "Power: " + PlayerStatsManager.Instance.playerFOR.ToString();
-		priceText[1].text = "Defense: " + PlayerStatsManager.Instance.playerCON.ToString();
-		priceText[2].text = "Agility: " + PlayerStatsManager.Instance.playerAGI.ToString();
-		priceText[3].text = "Luck: " + PlayerStatsManager.Instance.playerLCK.ToString();
-		
+		priceText[3] = placeholder.GetComponent<TMPro.TextMeshProUGUI>();
+
+
+
+
+		statsText[0].text = "Power: " + PlayerStatsManager.Instance.playerFOR.ToString();
+		statsText[1].text = "Defense: " + PlayerStatsManager.Instance.playerCON.ToString();
+		statsText[2].text = "Agility: " + PlayerStatsManager.Instance.playerAGI.ToString();
+		statsText[3].text = "Luck: " + PlayerStatsManager.Instance.playerLCK.ToString();
+        priceText[0].text = price[0].ToString();
+		priceText[1].text = price[1].ToString();
+		priceText[2].text = price[2].ToString();
+		priceText[3].text = price[3].ToString();
+
 		coinText.text = PlayerStatsManager.Instance.playerMON.ToString();
 
 
@@ -95,23 +99,23 @@ public class UpgradeMenuManager : MonoBehaviour
 		switch(id)
 		{
 			case 0:
-				statsPrice[id].text = "Power: " + PlayerStatsManager.Instance.playerFOR;
 				PlayerStatsManager.Instance.playerFOR += valuePerLevel;
+				statsText[id].text = "Power: " + PlayerStatsManager.Instance.playerFOR;
 				aux_power = PlayerStatsManager.Instance.playerFOR/valuePerLevel;
 			break;
 			case 1:
-				statsPrice[id].text = "Defense: " + PlayerStatsManager.Instance.playerCON;
 				PlayerStatsManager.Instance.playerCON += valuePerLevel;
+				statsText[id].text = "Defense: " + PlayerStatsManager.Instance.playerCON;
 				aux_power = PlayerStatsManager.Instance.playerCON/valuePerLevel;
 			break;
 			case 2:
-				statsPrice[id].text = "Agility: " + PlayerStatsManager.Instance.playerAGI;
 				PlayerStatsManager.Instance.playerAGI += valuePerLevel;
+				statsText[id].text = "Agility: " + PlayerStatsManager.Instance.playerAGI;
 				aux_power = PlayerStatsManager.Instance.playerAGI/valuePerLevel;
 			break;
 			case 3:
-				statsPrice[id].text = "Luck: " + PlayerStatsManager.Instance.playerLCK;
 				PlayerStatsManager.Instance.playerLCK += valuePerLevel;
+				statsText[id].text = "Luck: " + PlayerStatsManager.Instance.playerLCK;
 				aux_power = PlayerStatsManager.Instance.playerLCK/valuePerLevel;
 			break;
 		}
