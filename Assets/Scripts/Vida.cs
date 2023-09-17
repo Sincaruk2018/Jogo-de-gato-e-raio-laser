@@ -12,6 +12,7 @@ public class Vida : MonoBehaviour
     public void Damage(float value)
     {
         Health -= value;
+        gameObject.GetComponent<AudioSource>().Play();
        
 
     }

@@ -34,8 +34,12 @@ public class RataoIA : MonoBehaviour
             {
                 Instantiate(money, transform.position, transform.rotation);
                 if (Random.Range(100, 0) <= luck / 2)
-                {
-                    Instantiate(money, transform.position, transform.rotation);
+                {   
+                    for(int i = 0; i < 10; i++)
+                    {
+                        Instantiate(money, transform.position, transform.rotation);
+                    }
+                    
                 }
             }
             if (Random.Range(100, 0) <= 10f + luck)

@@ -16,6 +16,7 @@ public class PlayerManager : MonoBehaviour
     */
     private float FOR = 10f, CON = 10f, DES = 10f, SOR = 10f;
     private GameObject[] enemies;
+    private AudioSource Audio;
 
     // Não sei se precisa disso kek
     public float getFOR(){ return this.FOR; }
@@ -42,6 +43,7 @@ public class PlayerManager : MonoBehaviour
     private void Start() {
         maxVida = getVida();
         curVida = maxVida;
+        Audio = GetComponent<AudioSource>();
 
         xp = 0f;
 
@@ -53,6 +55,7 @@ public class PlayerManager : MonoBehaviour
 
     public void tomarDano(float dano){
         curVida -= dano;
+        Audio.Play();
         if(curVida <= 0){
             curVida = 0;
             GameObject.Find("Canvas").transform.GetChild(4).gameObject.SetActive(true);
