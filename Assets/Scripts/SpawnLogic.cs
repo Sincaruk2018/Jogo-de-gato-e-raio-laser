@@ -11,7 +11,7 @@ public class SpawnLogic : MonoBehaviour
     private float EnemyRoulette;
     [SerializeField] private GameObject Ratinho;
     [SerializeField] private GameObject Ratao;
-    [SerializeField] private GameObject atirador;
+    [SerializeField] private GameObject Atirador;
     void Start()
     {
         TimerMax = 5f;
@@ -35,12 +35,19 @@ public class SpawnLogic : MonoBehaviour
             }
 
             EnemyRoulette = Random.Range(0, 100);
-            if(EnemyRoulette <20f)
+            if(EnemyRoulette <=10f)
             {
                 Instantiate(Ratao,Target, transform.rotation);
                 Timer = TimerMax;
             }
-            else
+
+            else if (EnemyRoulette > 10f && EnemyRoulette <=20f)
+            {
+                Instantiate(Atirador, Target, transform.rotation);
+                Timer = TimerMax;
+            }
+
+            else if(EnemyRoulette > 20f)
             {
                 Instantiate(Ratinho, Target, transform.rotation);
                 Timer = TimerMax;

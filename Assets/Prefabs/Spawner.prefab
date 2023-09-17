@@ -46,4 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Ratinho: {fileID: 8848312020741701998, guid: fdf32c4501084d344a9f71f0f8743c4d, type: 3}
   Ratao: {fileID: 888021792779901731, guid: 0c1c2f6201c9c3e43b4939622a21d538, type: 3}
-  atirador: {fileID: 8104695566077694835, guid: ddf1989b4ec9be54ab821683227c196f, type: 3}
+  Atirador: {fileID: 8104695566077694835, guid: ddf1989b4ec9be54ab821683227c196f, type: 3}
