@@ -14,7 +14,7 @@ public class PlayerManager : MonoBehaviour
         DES - Destreza - velocidade de ataque do jogador
         SOR - Sorte - chance de crítico do jogador
     */
-    [SerializeField] private float FOR = 10f, CON = 10f, DES = 10f, SOR = 10f;
+    private float FOR = 10f, CON = 10f, DES = 10f, SOR = 10f;
     private GameObject[] enemies;
 
     // Não sei se precisa disso kek
@@ -57,10 +57,10 @@ public class PlayerManager : MonoBehaviour
         curVida -= dano;
         if(curVida <= 0){
             curVida = 0;
-            GameObject.Find("PanelGameOver").SetActive(true);
+            GameObject.Find("Canvas").transform.GetChild(4).gameObject.SetActive(true);
             GameObject.Find("Spawner").SetActive(false);
             enemies = GameObject.FindGameObjectsWithTag("enemie");
-            for(int i = 0; i < enemies.length; i++)
+            for(int i = 0; i < enemies.Length; i++)
             {
                 Destroy(enemies[i]);
             }
