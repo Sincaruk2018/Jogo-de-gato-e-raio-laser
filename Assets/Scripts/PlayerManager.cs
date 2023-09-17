@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
     // Talvez salvar esses valores em variável (ou lambda?)
     public float getDano(){ return this.FOR / 5f; }
     public float getVida(){ return this.CON * 5f; }
-    public float getAttackSpeed(){ return 10f / this.DES; }
+    public float getAttackSpeed(){ return 5f / this.DES; }
     public float getCriticalPercentage(){ return this.SOR / 100f; }
 
     private float maxVida;

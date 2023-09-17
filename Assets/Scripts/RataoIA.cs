@@ -34,7 +34,7 @@ public class RataoIA : MonoBehaviour
         {
             if (Random.Range(100, 0) <= 70f + luck)
             {
-                offset = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0f);
+                offset = new Vector3(Random.Range(-1.2f, 1.2f), Random.Range(-1.2f, 1.2f), 0f);
                 Instantiate(money, transform.position + offset, transform.rotation);
                 if (Random.Range(100, 0) <= luck / 2)
                 {   
@@ -47,7 +47,7 @@ public class RataoIA : MonoBehaviour
             }
             if (Random.Range(100, 0) <= 10f + luck)
             {
-                offset = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0f);
+                offset = new Vector3(Random.Range(-1.2f, 1.2f), Random.Range(-1.2f, 1.2f), 0f);
                 Instantiate(heart, transform.position + offset, transform.rotation);
                 if (Random.Range(100, 0) <= luck / 2)
                 {
