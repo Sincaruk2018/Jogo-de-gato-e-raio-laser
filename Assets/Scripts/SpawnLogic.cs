@@ -29,7 +29,7 @@ public class SpawnLogic : MonoBehaviour
         else
         {
             setTarget();
-            TimerMax = Random.Range(4f, 8f);
+            TimerMax = Random.Range(3f, 5f);
 
             EnemyRoulette = Random.Range(0, 100);
             if(EnemyRoulette <=20f)
