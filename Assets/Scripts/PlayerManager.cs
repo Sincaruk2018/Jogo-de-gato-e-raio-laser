@@ -60,12 +60,11 @@ public class PlayerManager : MonoBehaviour
             GameObject.Find("PanelGameOver").SetActive(true);
             GameObject.Find("Spawner").SetActive(false);
             enemies = GameObject.FindGameObjectsWithTag("enemie");
-            for(int i = 0; i < enemies.length; i++)
+            for(int i = 0; i < enemies.Length; i++)
             {
                 Destroy(enemies[i]);
             }
-            gameObject.SetActive(false);
-            
+            gameObject.SetActive(false);  
         }
 
         updateHUD();
@@ -126,16 +125,15 @@ public class PlayerManager : MonoBehaviour
     }
 
     [Header("HUD Settings")]
-    //[SerializeField] private TextMeshProUGUI healthIndicator;
+    [SerializeField] private TextMeshProUGUI healthIndicator;
     [SerializeField] private Image healthBar;
-
     [SerializeField] private TextMeshProUGUI coinIndicator;
 
     //[SerializeField] private TextMeshProUGUI ammoIndicator;
     //[SerializeField] private Image gunIcon;
 
     public void updateHUD(){
-        //healthIndicator.text = curVida + "/" + maxVida;
+        healthIndicator.text = curVida + " / " + maxVida;
         healthBar.fillAmount = curVida / maxVida;
 
         coinIndicator.text = xp.ToString("00000");
