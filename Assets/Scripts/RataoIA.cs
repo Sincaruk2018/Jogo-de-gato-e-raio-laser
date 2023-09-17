@@ -10,6 +10,7 @@ public class RataoIA : MonoBehaviour
     [SerializeField] private GameObject heart;
     private float TrueSpeed;
     private GameObject Player;
+    private float luck;
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
     private Vector2 direction;
@@ -20,6 +21,7 @@ public class RataoIA : MonoBehaviour
     {
         rb = this.GetComponent<Rigidbody2D>();
         Player = GameObject.Find("GatoProtagonista");
+        luck = Player.GetComponent<PlayerManager>().getSOR();
         sprite = this.GetComponent<SpriteRenderer>();
     }
 
@@ -28,13 +30,25 @@ public class RataoIA : MonoBehaviour
     {
         if (GetComponent<Vida>().Health <= 0)
         {
-            if (Random.Range(100, 0) <= 80f)
+            if (Random.Range(100, 0) <= 70f + luck)
             {
                 Instantiate(money, transform.position, transform.rotation);
+                if (Random.Range(100, 0) <= luck / 2)
+                {   
+                    for(int i = 0; i < 10; i++)
+                    {
+                        Instantiate(money, transform.position, transform.rotation);
+                    }
+                    
+                }
             }
-            if (Random.Range(100, 0) <= 10f)
+            if (Random.Range(100, 0) <= 10f + luck)
             {
                 Instantiate(heart, transform.position, transform.rotation);
+                if (Random.Range(100, 0) <= luck / 2)
+                {
+                    Instantiate(heart, transform.position, transform.rotation);
+                }
             }
 
             Destroy(gameObject);
@@ -46,6 +60,10 @@ public class RataoIA : MonoBehaviour
     {
         if (dashing == false)
         {
+            if(Vector3.Distance(transform.position,Player.transform.position) < 3)
+            {
+                dash(1f);
+            }
             if (Player.transform.position.x > gameObject.transform.position.x)
             {
                 sprite.flipX = true;

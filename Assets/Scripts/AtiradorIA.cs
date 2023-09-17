@@ -11,12 +11,14 @@ public class AtiradorIA : MonoBehaviour
     private float shootTimer;
     private SpriteRenderer sprite;
     private GameObject Player;
+    private float luck;
     private float projectileSpeed;
 
     void Start()
     {
         projectileSpeed = 2f;
         Player = GameObject.Find("GatoProtagonista");
+        luck = Player.GetComponent<PlayerManager>().getSOR();
         sprite = this.GetComponent<SpriteRenderer>();
     }
 
@@ -25,13 +27,24 @@ public class AtiradorIA : MonoBehaviour
     {
         if (GetComponent<Vida>().Health <= 0)
         {
-            if (Random.Range(100, 0) <= 80f)
+            if (Random.Range(100, 0) <= 70f+luck)
             {
                 Instantiate(money, transform.position, transform.rotation);
+                if (Random.Range(100, 0) <= luck/2)
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        Instantiate(money, transform.position, transform.rotation);
+                    }
+                }
             }
-            if (Random.Range(100, 0) <= 10f)
+            if (Random.Range(100, 0) <= 10f +luck)
             {
                 Instantiate(heart, transform.position, transform.rotation);
+                if (Random.Range(100, 0) <= luck / 2)
+                {
+                    Instantiate(heart, transform.position, transform.rotation);
+                }
             }
 
             Destroy(gameObject);
