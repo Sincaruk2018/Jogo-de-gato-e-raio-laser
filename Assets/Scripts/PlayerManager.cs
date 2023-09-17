@@ -128,7 +128,7 @@ public class PlayerManager : MonoBehaviour
         healthIndicator.text = curVida + " / " + maxVida;
         healthBar.fillAmount = curVida / maxVida;
 
-        coinIndicator.text = xp.ToString("00000000");
+        coinIndicator.text = xp.ToString("0000");
 
         //gunIcon.sprite = playerGun.gunSprite;
         //if(playerGun.isDefault) ammoIndicator.text = "\u221E"; // Código do símbolo infinito

@@ -108,10 +108,10 @@ public class UpgradeMenuManager : MonoBehaviour
 		statsText[1].text = "Defense: " + PlayerStatsManager.Instance.playerCON.ToString();
 		statsText[2].text = "Agility: " + PlayerStatsManager.Instance.playerAGI.ToString();
 		statsText[3].text = "Luck: " + PlayerStatsManager.Instance.playerLCK.ToString();
-        priceText[0].text = price[0].ToString("00000");
-		priceText[1].text = price[1].ToString("00000");
-		priceText[2].text = price[2].ToString("00000");
-		priceText[3].text = price[3].ToString("00000");
+        priceText[0].text = price[0].ToString("000");
+		priceText[1].text = price[1].ToString("000");
+		priceText[2].text = price[2].ToString("000");
+		priceText[3].text = price[3].ToString("000");
 
 		coinText.text = PlayerStatsManager.Instance.playerMON.ToString();
 
@@ -170,7 +170,7 @@ public class UpgradeMenuManager : MonoBehaviour
 		price[id] += (int)aux_power;
 		
 		/* Atualização dos Textos*/
-		priceText[id].text = price[id].ToString("00000");
+		priceText[id].text = price[id].ToString("000");
 		coinText.text = PlayerStatsManager.Instance.playerMON.ToString();
 		return;
 	}

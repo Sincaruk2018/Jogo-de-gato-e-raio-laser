@@ -32,7 +32,7 @@ public class SpawnLogic : MonoBehaviour
         cur = enemies.Length;
         if(cur<10 && cur < past)
         {
-            Timer= 0;
+            Timer= 0.2f;
         }
         past = cur;
 
