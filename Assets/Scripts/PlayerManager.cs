@@ -43,8 +43,6 @@ public class PlayerManager : MonoBehaviour
         maxVida = getVida();
         curVida = maxVida;
 
-        currentLevel = 1;
-        levelLimit = 10f;
         xp = 0f;
 
         ResetWeapon();
@@ -79,26 +77,13 @@ public class PlayerManager : MonoBehaviour
         updateHUD();
     }
 
-    private float levelLimit, xp;
-    public int currentLevel;
+    private float xp;
     public void AddXP(int amount){
         xp += amount;
         Debug.Log(xp);
-        if(xp == levelLimit){
-            Debug.Log("level up!");
-            LevelUp();
-        }
+        
 
         updateHUD();
-    }
-
-    private void LevelUp(){
-        currentLevel++;
-        xp = 0;
-
-        // TODO ajustar crescimento do xp pro próximo nível
-        levelLimit = 10 + (int) Math.Pow(2, currentLevel);
-        Debug.Log("Novo level cap:" + levelLimit);
     }
 
     [SerializeField] private Gun playerGun;
