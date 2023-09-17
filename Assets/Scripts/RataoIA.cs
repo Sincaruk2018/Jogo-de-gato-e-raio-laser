@@ -17,6 +17,8 @@ public class RataoIA : MonoBehaviour
     private float dashingTimer = 0f;
     private float predash = 0f;
     private bool dashing = false;
+    private Vector3 offset;
+
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -32,7 +34,8 @@ public class RataoIA : MonoBehaviour
         {
             if (Random.Range(100, 0) <= 70f + luck)
             {
-                Instantiate(money, transform.position, transform.rotation);
+                offset = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0f);
+                Instantiate(money, transform.position + offset, transform.rotation);
                 if (Random.Range(100, 0) <= luck / 2)
                 {   
                     for(int i = 0; i < 10; i++)
@@ -44,7 +47,8 @@ public class RataoIA : MonoBehaviour
             }
             if (Random.Range(100, 0) <= 10f + luck)
             {
-                Instantiate(heart, transform.position, transform.rotation);
+                offset = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0f);
+                Instantiate(heart, transform.position + offset, transform.rotation);
                 if (Random.Range(100, 0) <= luck / 2)
                 {
                     Instantiate(heart, transform.position, transform.rotation);
@@ -101,11 +105,7 @@ public class RataoIA : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player" && collider == collider.GetComponent<BoxCollider2D>())
         {
-
             collider.GetComponent<PlayerManager>().tomarDano(damage);
-            
-           
-
         }
     }
     
@@ -117,6 +117,5 @@ public class RataoIA : MonoBehaviour
             predash = 0.2f;
             dashing = true;
         }
-        
     }
 }

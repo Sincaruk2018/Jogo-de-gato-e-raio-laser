@@ -29,7 +29,7 @@ public class SpawnLogic : MonoBehaviour
         else
         {
             setTarget();
-            TimerMax = Random.Range(4f, 8f);
+            TimerMax = Random.Range(3f, 5f);
 
             EnemyRoulette = Random.Range(0, 100);
             if(EnemyRoulette <=20f)
@@ -54,7 +54,10 @@ public class SpawnLogic : MonoBehaviour
 
     void setTarget()
     {
-        Target.Set(Random.Range(-8f, 8f), Random.Range(-4.5f, 4.5f),0f);
+        Vector2 xBounds = new Vector2(Player.transform.position.x + 8f, Player.transform.position.x - 8f);
+        Vector2 yBounds = new Vector2(Player.transform.position.y + 4.5f, Player.transform.position.y - 4.5f);
+
+        Target.Set(Random.Range(xBounds.x, xBounds.y), Random.Range(yBounds.x, yBounds.y),0f);
         if(Vector3.Distance(Target, Player.transform.position) < 3){
             setTarget();
         }

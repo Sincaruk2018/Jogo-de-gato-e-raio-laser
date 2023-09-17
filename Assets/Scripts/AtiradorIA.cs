@@ -13,6 +13,7 @@ public class AtiradorIA : MonoBehaviour
     private GameObject Player;
     private float luck;
     private float projectileSpeed;
+    private Vector3 offset;
 
     void Start()
     {
@@ -29,7 +30,8 @@ public class AtiradorIA : MonoBehaviour
         {
             if (Random.Range(100, 0) <= 70f+luck)
             {
-                Instantiate(money, transform.position, transform.rotation);
+                offset = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0f);
+                Instantiate(money, transform.position + offset, transform.rotation);
                 if (Random.Range(100, 0) <= luck/2)
                 {
                     for (int i = 0; i < 10; i++)
@@ -40,7 +42,8 @@ public class AtiradorIA : MonoBehaviour
             }
             if (Random.Range(100, 0) <= 10f +luck)
             {
-                Instantiate(heart, transform.position, transform.rotation);
+                offset = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0f);
+                Instantiate(heart, transform.position + offset, transform.rotation);
                 if (Random.Range(100, 0) <= luck / 2)
                 {
                     Instantiate(heart, transform.position, transform.rotation);
@@ -69,7 +72,7 @@ public class AtiradorIA : MonoBehaviour
         }
         else
         {
-            GameObject Shot = Instantiate(projectile, transform.position, transform.rotation);
+            GameObject Shot = Instantiate(projectile, transform.position, Quaternion.FromToRotation(transform.right, targetDir));
             Shot.GetComponent<Rigidbody2D>().AddForce(projectileSpeed * targetDir, ForceMode2D.Impulse);
             shootTimer = 2f;
         }

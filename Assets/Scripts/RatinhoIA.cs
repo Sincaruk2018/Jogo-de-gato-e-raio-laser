@@ -15,6 +15,7 @@ public class RatinhoIA : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
     private Vector2 direction;
+    private Vector3 offset;
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
@@ -30,7 +31,8 @@ public class RatinhoIA : MonoBehaviour
         {
             if (Random.Range(100, 0) <= 70f + luck)
             {
-                Instantiate(money, transform.position, transform.rotation);
+                offset = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0f);
+                Instantiate(money, transform.position + offset, transform.rotation);
                 if (Random.Range(100, 0) <= luck / 2)
                 {
                     for (int i = 0; i < 10; i++)
@@ -41,6 +43,7 @@ public class RatinhoIA : MonoBehaviour
             }
             if (Random.Range(100, 0) <= 5f + luck )
             {
+                offset = new Vector3(Random.Range(-2f, 2f), Random.Range(-2f, 2f), 0f);
                 Instantiate(heart, transform.position, transform.rotation);
                 if (Random.Range(100, 0) <= luck / 2)
                 {
