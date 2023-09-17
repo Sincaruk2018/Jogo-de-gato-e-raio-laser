@@ -56,6 +56,10 @@ public class RataoIA : MonoBehaviour
     {
         if (dashing == false)
         {
+            if(Vector3.Distance(transform.position,Player.transform.position) < 3)
+            {
+                dash(1f);
+            }
             if (Player.transform.position.x > gameObject.transform.position.x)
             {
                 sprite.flipX = true;
