@@ -5,32 +5,75 @@ using UnityEngine;
 public class RatinhoIA : MonoBehaviour
 {
     [SerializeField] private float Speed = 2f;
-    [SerializeField] private float attackTimer = 1f;
+    [SerializeField] private float knockbackTimer = 0f;
     [SerializeField] private int damage = 2;
+    [SerializeField] private GameObject money;
+    [SerializeField] private GameObject heart;
+    private float TrueSpeed;
     private GameObject Player;
+    private Rigidbody2D rb;
+    private SpriteRenderer sprite;
+    private Vector2 direction;
     void Start()
     {
+        rb = this.GetComponent<Rigidbody2D>();
         Player = GameObject.Find("GatoProtagonista");
+        sprite = this.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, Player.transform.position, Speed * Time.deltaTime);
-        if(attackTimer > 0)
+        if(GetComponent<Vida>().Health <=0)
         {
-            attackTimer -= Time.deltaTime;
+            if (Random.Range(100, 0) <= 80f)
+            {
+                Instantiate(money, transform.position, transform.rotation);
+            }
+            if (Random.Range(100, 0) <= 10f)
+            {
+                Instantiate(heart, transform.position, transform.rotation);
+            }
+
+            Destroy(gameObject);
         }
         
     }
 
-    private void OnTriggerStay2D(Collider2D collider)
+    void FixedUpdate()
     {
-        if(collider.gameObject.name == "GatoProtagonista" )
+        if(Player.transform.position.x > gameObject.transform.position.x)
         {
-         
-                collider.GetComponent<Vida>().Damage(damage);
-                attackTimer = 1;
+            sprite.flipX = true;
+        }
+        else
+        {
+            sprite.flipX = false;
+        }
+
+
+        if(knockbackTimer > 0)
+        {
+            knockbackTimer -= Time.fixedDeltaTime;
+            TrueSpeed = TrueSpeed - Speed/0.8f * Time.fixedDeltaTime;
+        }
+        else
+        {
+            direction = ((Vector2)Player.transform.position - (Vector2)gameObject.transform.position).normalized;
+            TrueSpeed = Speed;
+        }
+
+        rb.MovePosition((Vector2)gameObject.transform.position + direction*Time.fixedDeltaTime*TrueSpeed);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collider)
+    {
+        if (collider.gameObject.tag == "Player" && collider == collider.GetComponent<BoxCollider2D>())
+        {
+
+            collider.GetComponent<PlayerManager>().tomarDano(damage);
+            knockbackTimer = 0.8f;
+            direction = - direction;
                 
         }
     }

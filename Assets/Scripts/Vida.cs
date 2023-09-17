@@ -4,22 +4,19 @@ using UnityEngine;
 
 public class Vida : MonoBehaviour
 {
-    [SerializeField] private int Health = 100;
-    [SerializeField] private int MaxHealth = 100;
+    [SerializeField] public float Health = 100;
+    [SerializeField] public float MaxHealth = 100;
 
 
 
-    public void Damage(int value)
+    public void Damage(float value)
     {
         Health -= value;
-        if (Health <= 0)
-        {
-            Destroy(gameObject);
-        }
+       
 
     }
 
-    public void Heal(int value)
+    public void Heal(float value)
     {
         Health += value;
         if (Health > MaxHealth)

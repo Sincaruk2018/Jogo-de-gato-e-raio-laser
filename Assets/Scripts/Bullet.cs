@@ -28,6 +28,7 @@ public class Bullet : MonoBehaviour
         if(other.gameObject.tag == "enemie"){
             // TODO adicionar logica de dano do inimigo aqui
             // Chamar uma funcao TomarDano(dano) do inimigo
+            other.GetComponent<Vida>().Damage(dano);
             Destroy(this.gameObject);
         }
 
