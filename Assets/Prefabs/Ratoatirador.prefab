@@ -190,6 +190,7 @@ MonoBehaviour:
   money: {fileID: 2844354306210815726, guid: 6fa4b2e57942112ac9741c9a6a02c65f, type: 3}
   heart: {fileID: 7904693637123610455, guid: 7103e647921a398448b9b7db8b2de46a, type: 3}
   projectile: {fileID: 8501609124229912620, guid: 00eab874e8fce9d42a4b2bac4b1cfdbf, type: 3}
+  projectileSpeed: 5
 --- !u!82 &6288982442776290807
 AudioSource:
   m_ObjectHideFlags: 0
