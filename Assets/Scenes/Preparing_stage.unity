@@ -1727,11 +1727,11 @@ MonoBehaviour:
   - {fileID: 1691998008}
   - {fileID: 1113885068}
   - {fileID: 274786963}
-  statsPrice:
-  - {fileID: 433612493}
-  - {fileID: 1308400168}
-  - {fileID: 2080301184}
-  - {fileID: 338997315}
+  statsText:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   coinText: {fileID: 945632674}
 --- !u!1 &1092301770
 GameObject:
@@ -2460,7 +2460,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 761, y: 191}
+  m_AnchoredPosition: {x: 740, y: 191}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1690360761
