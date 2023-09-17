@@ -48,7 +48,7 @@ public class PlayerManager : MonoBehaviour
         curVida = maxVida;
         Audio = GetComponent<AudioSource>();
 
-        xp = 0f;
+        xp = PlayerStatsManager.Instance.playerMON;
 
         ResetWeapon();
         updateHUD();
@@ -61,6 +61,7 @@ public class PlayerManager : MonoBehaviour
         Audio.Play();
         if(curVida <= 0){
             curVida = 0;
+            PlayerStatsManager.Instance.playerMON = this.xp;
             GameObject.Find("Canvas").transform.GetChild(4).gameObject.SetActive(true);
             GameObject.Find("Spawner").SetActive(false);
             enemies = GameObject.FindGameObjectsWithTag("enemie");
@@ -83,7 +84,7 @@ public class PlayerManager : MonoBehaviour
         updateHUD();
     }
 
-    private float xp;
+    private int xp = PlayerStatsManager.Instance.playerMON;
     public void AddXP(int amount){
         xp += amount;
         Debug.Log(xp);

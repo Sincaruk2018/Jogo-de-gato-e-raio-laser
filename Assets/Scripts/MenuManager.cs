@@ -8,12 +8,18 @@ public class MenuManager : MonoBehaviour
     public GameObject mainCanvas, instructionCanvas;
     
     private void Start() {
-        mainCanvas.SetActive(true);
-        instructionCanvas.SetActive(false);
+        if(mainCanvas != null && instructionCanvas != null){
+            mainCanvas.SetActive(true);
+            instructionCanvas.SetActive(false);
+        }
     }
 
     public void StartGame(){
         SceneManager.LoadScene(1); // Arrumar pra chamar a cena de upgrades
+    }
+
+    public void GoToMenu(){
+        SceneManager.LoadScene(0);
     }
 
     public void ShowInstructions(){
