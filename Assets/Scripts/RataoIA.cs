@@ -4,20 +4,23 @@ using UnityEngine;
 
 public class RataoIA : MonoBehaviour
 {
-    [SerializeField] private float Speed = 2f;
-    [SerializeField] private float knockbackTimer = 0f;
+    [SerializeField] private float Speed;
     [SerializeField] private int damage = 2;
     [SerializeField] private GameObject money;
     [SerializeField] private GameObject heart;
     private float TrueSpeed;
     private GameObject Player;
     private Rigidbody2D rb;
+    private SpriteRenderer sprite;
     private Vector2 direction;
-    private bool knockback = false;
+    private float dashingTimer = 0f;
+    private float predash = 0f;
+    private bool dashing = false;
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
         Player = GameObject.Find("GatoProtagonista");
+        sprite = this.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -41,36 +44,61 @@ public class RataoIA : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (knockbackTimer > 0)
+        if (dashing == false)
         {
-            knockbackTimer -= Time.fixedDeltaTime;
-            TrueSpeed = TrueSpeed - Speed / 0.8f * Time.fixedDeltaTime;
+            if (Player.transform.position.x > gameObject.transform.position.x)
+            {
+                sprite.flipX = true;
+            }
+            else
+            {
+                sprite.flipX = false;
+            }
+        }
+
+        if(predash > 0)
+        {
+            predash -= Time.fixedDeltaTime;
+            direction = ((Vector2)Player.transform.position - (Vector2)gameObject.transform.position).normalized;
         }
         else
         {
-            knockback = false;
+            if (dashingTimer > 0)
+            {
+                TrueSpeed = 7 * Speed;
+                dashingTimer -= Time.fixedDeltaTime;
+            }
+            else
+            {
+                dashing = false;
+                TrueSpeed = Speed;
+                direction = ((Vector2)Player.transform.position - (Vector2)gameObject.transform.position).normalized;
+            }
+            rb.MovePosition((Vector2)gameObject.transform.position + direction * Time.fixedDeltaTime * TrueSpeed);
         }
-
-        if (knockback == false)
-        {
-            direction = ((Vector2)Player.transform.position - (Vector2)gameObject.transform.position).normalized;
-            TrueSpeed = Speed;
-        }
-
-        rb.MovePosition((Vector2)gameObject.transform.position + direction * Time.fixedDeltaTime * TrueSpeed);
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.gameObject.name == "GatoProtagonista")
+        if (collider.gameObject.tag == "Player" && collider == collider.GetComponent<BoxCollider2D>())
         {
 
-            collider.GetComponent<Vida>().Damage(damage);
-            GetComponent<Vida>().Damage(10);
-            knockback = true;
-            knockbackTimer = 0.8f;
-            direction = -direction;
+            collider.GetComponent<PlayerManager>().tomarDano(damage);
+            
+           
 
         }
+    }
+    
+    public void dash(float timer)
+    {
+        if (dashing == false)
+        {
+            dashingTimer = timer;
+            predash = 0.2f;
+            dashing = true;
+        }
+        
     }
 }

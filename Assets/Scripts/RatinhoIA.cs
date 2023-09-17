@@ -12,12 +12,13 @@ public class RatinhoIA : MonoBehaviour
     private float TrueSpeed;
     private GameObject Player;
     private Rigidbody2D rb;
+    private SpriteRenderer sprite;
     private Vector2 direction;
-    private bool knockback = false;
     void Start()
     {
         rb = this.GetComponent<Rigidbody2D>();
         Player = GameObject.Find("GatoProtagonista");
+        sprite = this.GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -41,17 +42,22 @@ public class RatinhoIA : MonoBehaviour
 
     void FixedUpdate()
     {
+        if(Player.transform.position.x > gameObject.transform.position.x)
+        {
+            sprite.flipX = true;
+        }
+        else
+        {
+            sprite.flipX = false;
+        }
+
+
         if(knockbackTimer > 0)
         {
             knockbackTimer -= Time.fixedDeltaTime;
             TrueSpeed = TrueSpeed - Speed/0.8f * Time.fixedDeltaTime;
         }
         else
-        {
-            knockback = false;
-        }
-
-        if (knockback == false)
         {
             direction = ((Vector2)Player.transform.position - (Vector2)gameObject.transform.position).normalized;
             TrueSpeed = Speed;
@@ -62,12 +68,10 @@ public class RatinhoIA : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.gameObject.name == "GatoProtagonista" )
+        if (collider.gameObject.tag == "Player" && collider == collider.GetComponent<BoxCollider2D>())
         {
-         
-            collider.GetComponent<Vida>().Damage(damage);
-            GetComponent<Vida>().Damage(10);
-            knockback = true;
+
+            collider.GetComponent<PlayerManager>().tomarDano(damage);
             knockbackTimer = 0.8f;
             direction = - direction;
                 

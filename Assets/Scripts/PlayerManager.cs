@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
     public float getCriticalPercentage(){ return this.SOR / 100f; }
 
     private float maxVida;
-    private float curVida;
+    [SerializeField] private float curVida;
 
     private void Start() {
         maxVida = getVida();
